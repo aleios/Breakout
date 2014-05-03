@@ -1,5 +1,4 @@
 #include "Game.hpp"
-#include "GameGlobals.hpp"
 
 Game::Game()
 {
@@ -7,10 +6,12 @@ Game::Game()
 	window.create({ windowWidth, windowHeight, 32 }, "Breakout");
 	window.setFramerateLimit(60);
 
+	brickRows = 5;
+	brickCols = 22;
 	// Create our bricks.
 	for(auto y = 0; y < brickRows; y++)
 		for(auto x = 0; x < brickCols; x++)
-			bricks.emplace_back((x + 1) * (brickWidth + 3) + 22, (y + 2) * (brickHeight + 3));
+			bricks.emplace_back((x + 1) * (Brick::brickWidth + 3) + 22, (y + 2) * (Brick::brickHeight + 3));
 
 	// Load the font.
 	defaultFont.loadFromFile("arial.ttf");
@@ -66,11 +67,11 @@ void Game::UpdateInput()
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && paddle.left() > 0)
 	{
-		paddle.velocity.x = -paddleVelocity;
+		paddle.velocity.x = -Paddle::paddleVelocity;
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && paddle.right() < windowWidth)
 	{
-		paddle.velocity.x = paddleVelocity;
+		paddle.velocity.x = Paddle::paddleVelocity;
 	}
 	else
 		paddle.velocity.x = 0;
@@ -84,20 +85,20 @@ void Game::Update()
 	// Update
 	if (ball.left() < 0)
 	{
-		ball.velocity.x = ballVelocity;
+		ball.velocity.x = Ball::ballVelocity;
 	}
 	else if (ball.right() > windowWidth)
 	{
-		ball.velocity.x = -ballVelocity;
+		ball.velocity.x = -Ball::ballVelocity;
 	}
 
 	if (ball.top() < 0)
 	{
-		ball.velocity.y = ballVelocity;
+		ball.velocity.y = Ball::ballVelocity;
 	}
 	else if (ball.bottom() > windowHeight)
 	{
-		ball.velocity.y = -ballVelocity;
+		ball.velocity.y = -Ball::ballVelocity;
 	}
 
 	ball.Update();
@@ -152,15 +153,15 @@ void Game::testCollision(Paddle& paddle, Ball& ball)
 {
 	if (!isIntersecting(paddle, ball)) return;
 
-	ball.velocity.y = -ballVelocity;
+	ball.velocity.y = -Ball::ballVelocity;
 
 	if (sndPaddleHit.getStatus() != sf::Sound::Playing)
 		sndPaddleHit.play();
 
 	if (ball.x() < paddle.x())
-		ball.velocity.x = -ballVelocity;
+		ball.velocity.x = -Ball::ballVelocity;
 	else
-		ball.velocity.x = ballVelocity;
+		ball.velocity.x = Ball::ballVelocity;
 }
 
 void Game::testCollision(Brick& brick, Ball& ball)
@@ -181,9 +182,9 @@ void Game::testCollision(Brick& brick, Ball& ball)
 	float minOverlapY(ballFromTop ? overlapTop : overlapBottom);
 
 	if (abs(minOverlapX) < abs(minOverlapY))
-		ball.velocity.x = ballFromLeft ? -ballVelocity : ballVelocity;
+		ball.velocity.x = ballFromLeft ? -Ball::ballVelocity : Ball::ballVelocity;
 	else
-		ball.velocity.y = ballFromTop ? -ballVelocity : ballVelocity;
+		ball.velocity.y = ballFromTop ? -Ball::ballVelocity : Ball::ballVelocity;
 
 	// Play a sound when the ball hits a brick.
 	if (sndBrickHit.getStatus() != sf::Sound::Playing)

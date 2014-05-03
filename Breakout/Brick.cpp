@@ -1,7 +1,6 @@
 #include "Brick.hpp"
-#include "GameGlobals.hpp"
 
-const float ballVelocity{ 8.0f };
+const float Brick::brickWidth{ 30 }, Brick::brickHeight{ 20 };
 
 Brick::Brick(float inX, float inY)
 	: destroyed(false)

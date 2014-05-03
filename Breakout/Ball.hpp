@@ -1,7 +1,12 @@
+/* This program is free software. It comes without any warranty, to
+* the extent permitted by applicable law. You can redistribute it
+* and/or modify it under the terms of the Do What The Fuck You Want
+* To Public License, Version 2, as published by Sam Hocevar. See
+* http://www.wtfpl.net/ for more details. */
+
 #ifndef BALL_HPP
 #define BALL_HPP
 
-#include "GameGlobals.hpp"
 #include <SFML/Graphics.hpp>
 
 struct Ball
@@ -41,6 +46,8 @@ struct Ball
 	float right() { return x() + radius; }
 	float top() { return y() - radius; }
 	float bottom() { return y() + radius; }
+
+	static const float ballVelocity;
 };
 
 #endif
