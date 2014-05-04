@@ -4,6 +4,7 @@
 * To Public License, Version 2, as published by Sam Hocevar. See
 * http://www.wtfpl.net/ for more details. */
 
+#pragma once
 #ifndef BRICK_HPP
 #define BRICK_HPP
 

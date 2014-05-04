@@ -4,6 +4,7 @@
 * To Public License, Version 2, as published by Sam Hocevar. See
 * http://www.wtfpl.net/ for more details. */
 
+#pragma once
 #ifndef BALL_HPP
 #define BALL_HPP
 
@@ -11,10 +12,9 @@
 
 struct Ball
 {
-	sf::CircleShape shape;
-	float radius;
-
-	sf::Vector2f velocity;
+	Ball()
+	{
+	}
 
 	Ball(float inX, float inY, float inRadius = 10.0f)
 		: velocity(-ballVelocity, -ballVelocity)
@@ -48,6 +48,9 @@ struct Ball
 	float bottom() { return y() + radius; }
 
 	static const float ballVelocity;
+	sf::CircleShape shape;
+	float radius;
+	sf::Vector2f velocity;
 };
 
 #endif

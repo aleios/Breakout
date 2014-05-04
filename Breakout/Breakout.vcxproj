@@ -85,14 +85,25 @@
     <ClCompile Include="Ball.cpp" />
     <ClCompile Include="Brick.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameSettings.cpp" />
+    <ClCompile Include="GameState.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Paddle.cpp" />
+    <ClCompile Include="StateManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ball.hpp" />
     <ClInclude Include="Brick.hpp" />
     <ClInclude Include="Game.hpp" />
+    <ClInclude Include="GameSettings.hpp" />
+    <ClInclude Include="GameState.hpp" />
+    <ClInclude Include="LossState.hpp" />
+    <ClInclude Include="MenuState.hpp" />
     <ClInclude Include="Paddle.hpp" />
+    <ClInclude Include="PauseState.hpp" />
+    <ClInclude Include="SettingsState.hpp" />
+    <ClInclude Include="State.hpp" />
+    <ClInclude Include="StateManager.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
