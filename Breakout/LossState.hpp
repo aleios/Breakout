@@ -10,13 +10,21 @@
 
 #include "State.hpp"
 
+#include <SFML/Graphics/Font.hpp>
+#include <SFML/Graphics/Text.hpp>
+
 class LossState
 	: public State
 {
 public:
+	LossState(Context context);
 	void OnEvent(const sf::Event& ev);
 	void OnUpdate();
-	void OnDraw(sf::RenderWindow& window);
+	void OnDraw();
+
+private:
+	sf::Font defaultFont;
+	sf::Text lossText;
 };
 
 #endif

@@ -87,6 +87,7 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameSettings.cpp" />
     <ClCompile Include="GameState.cpp" />
+    <ClCompile Include="LossState.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Paddle.cpp" />
     <ClCompile Include="StateManager.cpp" />

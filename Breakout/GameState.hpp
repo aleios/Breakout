@@ -23,12 +23,12 @@ class GameState
 	: public State
 {
 public:
-	GameState();
+	GameState(Context context);
 	~GameState();
 
 	void OnEvent(const sf::Event& ev);
 	void OnUpdate();
-	void OnDraw(sf::RenderWindow& window);
+	void OnDraw();
 
 private:
 	template<class T1, class T2>

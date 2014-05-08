@@ -34,36 +34,6 @@ private:
 	static GameSettings* instance;
 
 	std::map<std::string, std::string> configMap;
-
-	template<class T>
-	T ConvertString(std::string str, bool& success)
-	{
-		// Default to success.
-		success = true;
-
-		// Check if the string is empty. If not then process.
-		if (!str.empty())
-		{
-			T value;
-			std::istringstream iss(str);
-
-			// Perform conversion.
-			iss >> std::dec >> value;
-
-			// Test if conversion succeded.
-			if (iss.fail())
-			{
-				success = false;
-				return T();
-			}
-
-			// If we get here then the conversion did succeed.
-			return value;
-		}
-
-		// No data to process so return a default.
-		return T();
-	}
 };
 
 #endif

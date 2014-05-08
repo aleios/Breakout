@@ -11,9 +11,22 @@
 #include <SFML/Window/Event.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
 
+class StateManager;
+
+struct Context
+{
+	StateManager& stateManager;
+	sf::RenderWindow& window;
+};
+
 class State
 {
 public:
+	State(Context context)
+		: context(context)
+	{
+	}
+
 	virtual ~State()
 	{
 
@@ -21,7 +34,10 @@ public:
 
 	virtual void OnEvent(const sf::Event& ev) = 0;
 	virtual void OnUpdate() = 0;
-	virtual void OnDraw(sf::RenderWindow& window) = 0;
+	virtual void OnDraw() = 0;
+
+protected:
+	Context context;
 };
 
 #endif

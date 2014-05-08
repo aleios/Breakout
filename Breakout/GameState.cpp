@@ -1,7 +1,11 @@
 #include "GameState.hpp"
 #include "GameSettings.hpp"
 
-GameState::GameState()
+#include "StateManager.hpp"
+#include "LossState.hpp"
+
+GameState::GameState(Context context)
+	: State(context)
 {
 	GameSettings* settings = GameSettings::GetInstance();
 
@@ -49,16 +53,15 @@ void GameState::OnEvent(const sf::Event& ev)
 
 void GameState::OnUpdate()
 {
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && paddle->left() > 0)
-	{
-		paddle->velocity.x = -Paddle::paddleVelocity;
-	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && paddle->right() < windowWidth)
-	{
-		paddle->velocity.x = Paddle::paddleVelocity;
-	}
-	else
-		paddle->velocity.x = 0;
+	// Move players paddle.
+	sf::Vector2f paddlePos = paddle->GetPosition();
+	sf::Vector2i mousePos = sf::Mouse::getPosition(context.window);
+	if (mousePos.x > windowWidth)
+		mousePos.x = windowWidth;
+	if (mousePos.x < 0)
+		mousePos.x = 0;
+	paddlePos.x = mousePos.x;
+	paddle->SetPosition(paddlePos);
 
 	// Update
 	if (ball->left() < 0)
@@ -98,10 +101,16 @@ void GameState::OnUpdate()
 
 	// Remove dead bricks.
 	bricks.erase(std::remove_if(std::begin(bricks), std::end(bricks), [](const Brick& brick){ return brick.destroyed; }), std::end(bricks));
+
+	// Loss
+	if (lives <= 0)
+		context.stateManager.PushState(std::move(std::make_unique<LossState>(context)));
 }
 
-void GameState::OnDraw(sf::RenderWindow& window)
+void GameState::OnDraw()
 {
+	sf::RenderWindow& window = context.window;
+
 	window.draw(ball->shape);
 	window.draw(paddle->shape);
 

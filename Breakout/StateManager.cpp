@@ -33,8 +33,8 @@ void StateManager::OnUpdate()
 		states.back()->OnUpdate();
 }
 
-void StateManager::OnDraw(sf::RenderWindow& window)
+void StateManager::OnDraw()
 {
 	if (states.size() > 0)
-		states.back()->OnDraw(window);
+		states.back()->OnDraw();
 }

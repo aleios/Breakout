@@ -32,13 +32,8 @@ int GameSettings::GetSettingInt(const std::string& key)
 	if (cfg == configMap.end())
 		throw std::runtime_error("Error: Could not find key specified");
 
-	bool success = false;
-	int value = ConvertString<int>(cfg->second, success);
-
-	if (!success)
-		throw std::runtime_error("Error: Key is not of type (int).");
-
-	return value;
+	// Convert the string to int. Throws exception on failure.
+	return std::stoi(cfg->second);
 }
 
 float GameSettings::GetSettingFloat(const std::string& key)
@@ -47,11 +42,6 @@ float GameSettings::GetSettingFloat(const std::string& key)
 	if (cfg == configMap.end())
 		throw std::runtime_error("Error: Could not find key specified");
 
-	bool success = false;
-	float value = ConvertString<float>(cfg->second, success);
-
-	if (!success)
-		throw std::runtime_error("Error: Key is not of type (float).");
-
-	return value;
+	// Convert string to float. Throws exception on failure.
+	return std::stof(cfg->second);;
 }

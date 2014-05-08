@@ -27,7 +27,7 @@ public:
 
 	void OnEvent(const sf::Event& ev);
 	void OnUpdate();
-	void OnDraw(sf::RenderWindow& window);
+	void OnDraw();
 private:
 	std::vector<std::unique_ptr<State>> states;
 };

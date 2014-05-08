@@ -34,6 +34,11 @@ struct Paddle
 		shape.setPosition(pos);
 	}
 
+	const sf::Vector2f& GetPosition() const
+	{
+		return shape.getPosition();
+	}
+
 	float x() { return shape.getPosition().x; }
 	float y() { return shape.getPosition().y; }
 

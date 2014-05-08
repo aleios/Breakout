@@ -23,7 +23,7 @@ Game::~Game()
 void Game::Run()
 {
 	// Push game state onto the stack.
-	stateManager.PushState(std::make_unique<GameState>());
+	stateManager.PushState(std::make_unique<GameState>(Context{ stateManager, window }));
 
 	while (!isQuitting)
 	{
@@ -51,7 +51,7 @@ void Game::Run()
 		
 		// Draw states.
 		window.clear();
-		stateManager.OnDraw(window);
+		stateManager.OnDraw();
 		window.display();
 	}
 }
