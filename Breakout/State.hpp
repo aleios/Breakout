@@ -9,15 +9,8 @@
 #define STATE_HPP
 
 #include <SFML/Window/Event.hpp>
-#include <SFML/Graphics/RenderWindow.hpp>
 
-class StateManager;
-
-struct Context
-{
-	StateManager& stateManager;
-	sf::RenderWindow& window;
-};
+#include "Context.hpp"
 
 class State
 {

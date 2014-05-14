@@ -50,6 +50,7 @@ private:
 	std::vector<Brick> bricks;
 
 	unsigned int lives{ 3 };
+	bool ballCanMove{ false };
 
 	sf::Font defaultFont;
 	sf::Text msgText;

@@ -63,6 +63,10 @@ void GameState::OnUpdate()
 	paddlePos.x = mousePos.x;
 	paddle->SetPosition(paddlePos);
 
+	// Initial Check
+	if (!ballCanMove && sf::Mouse::isButtonPressed(sf::Mouse::Left))
+		ballCanMove = true;
+
 	// Update
 	if (ball->left() < 0)
 	{
@@ -82,7 +86,9 @@ void GameState::OnUpdate()
 		ball->velocity.y = -Ball::ballVelocity;
 	}
 
-	ball->Update();
+	if (ballCanMove)
+		ball->Update();
+
 	paddle->Update();
 
 	testCollision(*paddle, *ball);
@@ -93,6 +99,7 @@ void GameState::OnUpdate()
 		paddle->SetPosition({ windowWidth / 2.0f, windowHeight - 64.0f });
 		ball->SetPosition({ windowWidth / 2.0f, windowHeight / 2.0f });
 		lives--;
+		ballCanMove = false;
 	}
 
 	// Test ball-brick collisions

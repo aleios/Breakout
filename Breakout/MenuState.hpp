@@ -9,14 +9,25 @@
 #define MENUSTATE_HPP
 
 #include "State.hpp"
+#include "GUIManager.hpp"
+
+#include <SFML/Graphics/Font.hpp>
 
 class MenuState
 	: public State
 {
 public:
+	MenuState(Context context);
+
 	void OnEvent(const sf::Event& ev);
 	void OnUpdate();
-	void OnDraw(sf::RenderWindow& window);
+	void OnDraw();
+
+private:
+	void OnButton();
+
+	GUI::GUIManager gui;
+	sf::Font defaultFont;
 };
 
 #endif

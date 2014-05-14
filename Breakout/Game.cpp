@@ -1,6 +1,7 @@
 #include "Game.hpp"
 #include "GameSettings.hpp"
 #include "GameState.hpp"
+#include "MenuState.hpp"
 
 Game::Game()
 {
@@ -23,7 +24,7 @@ Game::~Game()
 void Game::Run()
 {
 	// Push game state onto the stack.
-	stateManager.PushState(std::make_unique<GameState>(Context{ stateManager, window }));
+	stateManager.PushState(std::make_unique<MenuState>(Context{ stateManager, window }));
 
 	while (!isQuitting)
 	{
