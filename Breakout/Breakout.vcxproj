@@ -102,8 +102,9 @@
     <ClInclude Include="Game.hpp" />
     <ClInclude Include="GameSettings.hpp" />
     <ClInclude Include="GameState.hpp" />
+    <ClInclude Include="GUILabel.hpp" />
     <ClInclude Include="GUIManager.hpp" />
-    <ClInclude Include="GUIObject.hpp" />
+    <ClInclude Include="GUIWidget.hpp" />
     <ClInclude Include="LossState.hpp" />
     <ClInclude Include="GUIButton.hpp" />
     <ClInclude Include="MenuState.hpp" />

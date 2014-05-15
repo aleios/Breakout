@@ -5,7 +5,7 @@
 #include <string>
 #include <functional>
 
-#include "GUIObject.hpp"
+#include "GUIWidget.hpp"
 
 #include <SFML/Graphics/RectangleShape.hpp>
 #include <SFML/Graphics/Text.hpp>
@@ -13,7 +13,7 @@
 namespace GUI
 {
 	class GUIButton
-		: public GUIObject
+		: public GUIWidget
 	{
 	public:
 		void OnEvent(const sf::Event& ev);

@@ -1,17 +1,18 @@
 #pragma once
-#ifndef GUIOBJECT_HPP
-#define GUIOBJECT_HPP
+#ifndef GUIWIDGET_HPP
+#define GUIWIDGET_HPP
 
 #include <SFML/Window/Event.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
 
 namespace GUI
 {
-	class GUIObject
+	class GUIWidget
 	{
 	public:
-		GUIObject()
+		virtual ~GUIWidget()
 		{
+
 		}
 
 		virtual void OnEvent(const sf::Event& ev) = 0;

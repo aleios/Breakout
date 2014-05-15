@@ -1,10 +1,12 @@
 #include "GUIManager.hpp"
 
+#include <algorithm>
+
 namespace GUI
 {
 	void GUIManager::OnEvent(const sf::Event& ev)
 	{
-		for (auto& it : objects)
+		for (auto& it : widgets)
 		{
 			it->OnEvent(ev);
 		}
@@ -12,7 +14,7 @@ namespace GUI
 
 	void GUIManager::OnUpdate()
 	{
-		for (auto& it : objects)
+		for (auto& it : widgets)
 		{
 			it->OnUpdate();
 		}
@@ -20,14 +22,27 @@ namespace GUI
 
 	void GUIManager::OnDraw(sf::RenderWindow& window)
 	{
-		for (auto& it : objects)
+		for (auto& it : widgets)
 		{
 			it->OnDraw(window);
 		}
 	}
 
-	void GUIManager::AddObject(std::unique_ptr<GUIObject> object)
+	void GUIManager::Add(std::shared_ptr<GUIWidget> widget)
 	{
-		objects.push_back(std::move(object));
+		widgets.push_back(widget);
+	}
+
+	void GUIManager::Remove(std::shared_ptr<GUIWidget> widget)
+	{
+		WidgetIter it = std::find(widgets.begin(), widgets.end(), widget);
+
+		if (it != widgets.end())
+			widgets.erase(it);
+	}
+
+	void GUIManager::RemoveAll()
+	{
+		widgets.clear();
 	}
 }

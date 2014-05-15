@@ -7,7 +7,7 @@
 #include <SFML/Window/Event.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
 
-#include "GUIObject.hpp"
+#include "GUIWidget.hpp"
 
 namespace GUI
 {
@@ -18,9 +18,14 @@ namespace GUI
 		void OnUpdate();
 		void OnDraw(sf::RenderWindow& window);
 
-		void AddObject(std::unique_ptr<GUIObject> object);
+		void Add(std::shared_ptr<GUIWidget> widget);
+		void Remove(std::shared_ptr<GUIWidget> widget);
+		void RemoveAll();
 	private:
-		std::vector<std::unique_ptr<GUIObject>> objects;
+		typedef std::vector<std::shared_ptr<GUIWidget>> WidgetList;
+		typedef WidgetList::iterator WidgetIter;
+
+		WidgetList widgets;
 	};
 }
 

@@ -101,9 +101,6 @@
     <ClInclude Include="SettingsState.hpp">
       <Filter>Header Files\States</Filter>
     </ClInclude>
-    <ClInclude Include="GUIObject.hpp">
-      <Filter>Header Files\GUI</Filter>
-    </ClInclude>
     <ClInclude Include="Context.hpp">
       <Filter>Header Files\States</Filter>
     </ClInclude>
@@ -111,6 +108,12 @@
       <Filter>Header Files\GUI</Filter>
     </ClInclude>
     <ClInclude Include="GUIButton.hpp">
+      <Filter>Header Files\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="GUILabel.hpp">
+      <Filter>Header Files\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="GUIWidget.hpp">
       <Filter>Header Files\GUI</Filter>
     </ClInclude>
   </ItemGroup>

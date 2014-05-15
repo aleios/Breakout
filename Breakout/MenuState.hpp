@@ -13,6 +13,8 @@
 
 #include <SFML/Graphics/Font.hpp>
 
+#include "GUIButton.hpp"
+
 class MenuState
 	: public State
 {

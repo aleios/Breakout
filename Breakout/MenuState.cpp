@@ -1,7 +1,5 @@
 #include "MenuState.hpp"
 
-#include "GUIButton.hpp"
-
 #include "GameState.hpp"
 #include "StateManager.hpp"
 
@@ -10,7 +8,8 @@ MenuState::MenuState(Context context)
 {
 	defaultFont.loadFromFile("arial.ttf");
 
-	auto playButton = std::make_unique<GUI::GUIButton>();
+	auto playButton = std::make_shared<GUI::GUIButton>();
+
 	playButton->SetSize(sf::Vector2f(150, 50));
 	playButton->SetPosition(sf::Vector2f(100, 100));
 	playButton->SetText("Play Game");
@@ -19,7 +18,7 @@ MenuState::MenuState(Context context)
 
 	playButton->RegisterCallback(std::bind(&MenuState::OnButton, this));
 
-	gui.AddObject(std::move(playButton));
+	gui.Add(playButton);
 }
 
 void MenuState::OnEvent(const sf::Event& ev)
